@@ -2,8 +2,10 @@ import { useState } from "react";
 import { foodData } from "../data/data";
 import { FaHeart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function Foodies() {
+    const Navigate = useNavigate();
   const [filteredData, setFilteredData] = useState(foodData);
 
   const handleAll = () => {
@@ -126,12 +128,13 @@ export default function Foodies() {
                           <a href="#" className="btn-cart me-3 px-4 pt-3 pb-3">
                             <h5 className="text-uppercase m-0">Add to Cart</h5>
                           </a>
-                          <a href="#" className="btn-wishlist px-4 pt-3 ">
+                          <p  onClick={() => Navigate(`${food.id}`)}  className="btn-wishlist px-4 pt-3 ">
                             <FaHeart
                               icon="fluent:heart-28-filled"
                               className="fs-5"
+                             
                             />
-                          </a>
+                          </p>
                         </div>
                       </div>
                     </div>

@@ -415,12 +415,12 @@ a.categories-item:hover iconify-icon.category-icon {
   border: none;
 }
 
-a.btn-cart {
+p.btn-cart {
   border-radius: 0.25rem;
   border: 1px solid rgba(65, 64, 62, 0.20);
 }
 
-a.btn-wishlist {
+p.btn-wishlist {
 
   border-radius: 0.25rem;
   border: 1px solid rgba(65, 64, 62, 0.20);
@@ -560,7 +560,6 @@ iconify-icon.send-icon {
   border: 1px solid #DEAD6F;
   background: #DEAD6F;
 }
-
 
 @media screen and (max-width: 991px) {
 

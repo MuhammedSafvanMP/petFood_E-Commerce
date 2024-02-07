@@ -2,6 +2,7 @@ import React from 'react';
 import { FaUser, FaHeart } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
+import { Link, NavLink } from 'react-router-dom';
 
 
 
@@ -58,10 +59,10 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href="wishlist.html" className="mx-3">
+                <Link to='/:id' className="mx-3">
                   {/* Replace with the actual icon component or image */}
                   <span className="fs-4"> <FaHeart /> </span>
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#" className="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
@@ -105,7 +106,7 @@ export default function Header() {
 
               <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
               <li class="nav-item">
-                <a href="index.html" class="nav-link active">Home</a>
+                <NavLink to='/'  class="nav-link active">Home</NavLink>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
@@ -167,10 +168,10 @@ export default function Header() {
                     </a>
                   </li>
                   <li>
-                    <a href="wishlist.html" className="mx-3">
+                    <Link to='/:id' className="mx-3">
                       {/* Replace with the actual icon component or image */}
                       <span className="fs-4"> <FaHeart /> </span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a href="#" className="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
