@@ -1,7 +1,18 @@
 import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Carousal from '../components/Carousel'
 
 export default function Home() {
   return (
-    <div>Home</div>
+    <>
+         <Routes>
+        <Route
+          path="/"
+          element={
+            <Carousal />
+          }
+        />
+      </Routes>
+    </>
   )
 }
