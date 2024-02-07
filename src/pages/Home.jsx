@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Carousal from '../components/Carousel'
+import Catogories from '../components/Catogaries'
 
 export default function Home() {
   return (
@@ -9,7 +10,10 @@ export default function Home() {
         <Route
           path="/"
           element={
-            <Carousal />
+              <>
+              <Carousal />
+              <Catogories />
+            </>
           }
         />
       </Routes>
