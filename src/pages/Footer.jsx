@@ -8,7 +8,7 @@ export default function Footer() {
 
         <div className="col-md-3">
           <div className="footer-menu">
-            <img src="./images/logo.png" alt="logo" />
+            <img src="../images/logo.png" alt="logo" />
             <p className="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand offers.</p>
             <div className="social-links">
               <ul className="d-flex list-unstyled gap-2">

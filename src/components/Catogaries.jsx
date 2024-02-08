@@ -11,25 +11,25 @@ export default function Catogories() {
       <div class="row my-5">
       
         <div class="col text-center">
-          <a href="#" class="categories-item">
+          <a  class="categories-item">
           < PiBirdLight style={{fontSize: "5.4rem", color: '#DEAD6F'}}  />
             <h5>Bird</h5>
           </a>
         </div>
         <div class="col text-center">
-          <a href="#" class="categories-item">
+          <a  class="categories-item">
             <PiDogDuotone style={{fontSize: "5.4rem", color: '#DEAD6F'}} />
             <h5>Dog </h5>
           </a>
         </div>
         <div class="col text-center">
-          <a href="#" class="categories-item">
+          <a class="categories-item">
           <IoFishOutline style={{fontSize: "5.4rem", color: '#DEAD6F'}} />
             <h5>Fish </h5>
           </a>
         </div>
         <div class="col text-center">
-          <a href="#" class="categories-item">
+          <a  class="categories-item">
           <PiCat style={{fontSize: "5.4rem", color: '#DEAD6F'}} />
             <h5>Cat </h5>
           </a>

@@ -405,7 +405,9 @@ a.categories-item:hover iconify-icon.category-icon {
   margin: 0 var(--swiper-pagination-bullet-horizontal-gap, 8px);
 }
  */
-
+li{
+  list-style:  none;
+}
 
 /* pet clothing */
 .card {
@@ -415,15 +417,15 @@ a.categories-item:hover iconify-icon.category-icon {
   border: none;
 }
 
-p.btn-cart {
+a.btn-cart {
   border-radius: 0.25rem;
   border: 1px solid rgba(65, 64, 62, 0.20);
 }
 
-p.btn-wishlist {
-
+a.btn-wishlist {
   border-radius: 0.25rem;
   border: 1px solid rgba(65, 64, 62, 0.20);
+  cursor: pointer;
 }
 
 

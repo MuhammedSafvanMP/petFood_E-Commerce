@@ -1,26 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { foodData } from '../data/data';
-import { useParams } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
+import { globalContext } from '../context/GlobalContext';
+import { MdDelete } from "react-icons/md";
 
 export default function Wishlist() {
-  const { id } = useParams();
-  const [likeItem, setLikeItem] = useState([]);
 
-  useEffect(() => {
-    const result = foodData.find((data) => data.id == id);
-    setLikeItem([...likeItem, result]);
-  }, [id]);
+  const [ likeItem, setLikeItem] = useContext(globalContext)
 
-  console.log(likeItem,"like items");
+  const handleDelete = (id) => {
+     setLikeItem(prevLikeItem => prevLikeItem.filter((value) => value.id !== id))
+  }
+ 
 
-  return (
+  return (    
     <section id="Wishlist" className="py-5 my-5">
       <div className="container">
         <table className="table">
           <thead>
             <tr>
               <th scope="col" className="card-title text-uppercase">
-                Product
+               Product
               </th>
               <th scope="col" className="card-title text-uppercase">
                 Unit Price
@@ -52,12 +51,11 @@ export default function Wishlist() {
                       <div className="col-lg-9">
                         <div className="card-detail ps-3">
                           <h5 className="card-title">
-                            <a
-                              href="#"
+                            <NavLink
                               className="text-decoration-none"
                             >
                               {data.title}{' '}
-                            </a>
+                            </NavLink>
                           </h5>
                         </div>
                       </div>
@@ -83,11 +81,7 @@ export default function Wishlist() {
                         </button>
                       </div>
                       <div className="cart-remove">
-                        <a href="#">
-                          <svg width="24" height="24">
-                            <use xlinkHref="#trash"></use>
-                          </svg>
-                        </a>
+                      <MdDelete style={{fontSize: "3rem"}} onClick={() => handleDelete(data.id)} />
                       </div>
                     </div>
                   </td>

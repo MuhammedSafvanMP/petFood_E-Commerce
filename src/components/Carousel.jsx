@@ -5,7 +5,7 @@ export default function Carousal() {
   const carouselData = [
     {
       id: 0,
-      img: "./src/images/item8.jpg",
+      img: "../images/carousel-1.jpeg",
       offer: "Save 10 - 20 % off",
       title: {
         black: "Best destination for",
@@ -14,7 +14,7 @@ export default function Carousal() {
     },
     {
       id: 1,
-      img: "./src/images/item9.jpg",
+      img: "../images/carousel-1.jpeg",
       offer: "Save 10 - 20 % off",
       title: {
         black: "Best destination for",
@@ -23,7 +23,7 @@ export default function Carousal() {
     },
     {
       id: 3,
-      img: "./src/images/item7.jpg",
+      img: "../images/carousel-1.jpeg",
       offer: "Save 10 - 20 % off",
       title: {
         black: "Best destination for",
@@ -50,7 +50,7 @@ export default function Carousal() {
               <div className="swiper-slide py-5">
                     <div className="row banner-content align-items-center">
                       <div className="img-wrapper col-md-5">
-                        <img src={caro.img} alt="Banner 1" className="img-fluid" />
+                        <img src={caro.img} width={'70%'} alt="Banner 1" className="img-fluid" />
                       </div>
                       <div className="content-wrapper col-md-7 p-5 mb-5">
                         <div className="secondary-font text-primary text-uppercase mb-4">{caro.offer}</div>

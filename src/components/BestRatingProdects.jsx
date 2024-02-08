@@ -1,12 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useContext } from 'react';
 import Swiper from 'swiper';
 import 'swiper/swiper-bundle.css'; 
 import { foodData } from '../data/data';
 import { FaHeart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+import { globalContext } from '../context/GlobalContext';
 
 
-export default function BestSellingProdects() {
+
+export default function BestRatingProdects() {
+
+  const Navigate = useNavigate();
+  const [ likeItem, setLikeItem] = useContext(globalContext)
+
+
+  const handleLike = (id) => {
+    const result = foodData.find((data) => data.id == id);
+    if (!likeItem.some((item) => item.id === result.id)) {
+      setLikeItem([...likeItem, result]);
+    }
+  }
+  
+  useEffect(() => {   
+  }, [handleLike]);
+   
+
 
   useEffect(() => {
     const swiper = new Swiper('.bestselling-swiper', {
@@ -50,9 +69,9 @@ export default function BestSellingProdects() {
     <div className="container py-5 mb-5">
 
       <div className="section-header d-md-flex justify-content-between align-items-center mb-3">
-        <h2 className="display-3 fw-normal">Best selling products</h2>
+        <h2 className="display-3 fw-normal">Best Rating products</h2>
         <div>
-          <a href="#" className="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+          <a  className="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
             shop now
             <svg width="24" height="24" viewBox="0 0 24 24" className="mb-1">
               <use xlink:href="#arrow-right"></use>
@@ -68,9 +87,9 @@ export default function BestSellingProdects() {
           return(
             <div className="swiper-slide" key={food.id}>
             <div className="card position-relative">
-              <a href="single-product.html"><img src={food.image} className="img-fluid rounded-4" alt="image" /></a>
+              <a><img onClick={() => Navigate(`${food.id}`)}  src={food.image} className="img-fluid rounded-4" alt="image" /></a>
               <div className="card-body p-0">
-                <a href="single-product.html">
+                <a>
                   <h3 className="card-title pt-4 m-0"> {food.title} </h3>
                 </a>
 
@@ -89,15 +108,16 @@ export default function BestSellingProdects() {
                   <h3 className="secondary-font text-primary">${food.price}.00</h3>
 
                   <div className="d-flex flex-wrap mt-3">
-                    <a href="#" className="btn-cart me-3 px-4 pt-3 pb-3">
+                    <a>
                       <h5 className="text-uppercase m-0">Add to Cart</h5>
                     </a>
-                    <a href="#" className="btn-wishlist px-4 pt-3 ">
-                    <FaHeart
+                    <a  onClick={() => handleLike(food.id)}  className="btn-wishlist px-4 pt-3 ">
+                            <FaHeart
                               icon="fluent:heart-28-filled"
-                              class="fs-5"
-                    />               
-                     </a>
+                              className="fs-5"
+                             
+                            />
+                    </a>
                   </div>
 
 
