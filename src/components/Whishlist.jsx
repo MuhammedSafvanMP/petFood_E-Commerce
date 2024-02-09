@@ -5,7 +5,7 @@ import { MdDelete } from "react-icons/md";
 
 export default function Wishlist() {
 
-  const [ likeItem, setLikeItem] = useContext(globalContext)
+  const [ likeItem, setLikeItem, addCart, setAddCart] = useContext(globalContext)
 
   const handleDelete = (id) => {
      setLikeItem(prevLikeItem => prevLikeItem.filter((value) => value.id !== id))

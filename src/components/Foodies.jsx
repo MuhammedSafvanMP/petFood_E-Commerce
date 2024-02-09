@@ -8,12 +8,20 @@ import { globalContext } from '../context/GlobalContext';
 
 export default function Foodies() {
     const Navigate = useNavigate()
-  const [ likeItem, setLikeItem] = useContext(globalContext)
+  const [ likeItem, setLikeItem,addCart, setAddCart] = useContext(globalContext)
 
 
   const [filteredData, setFilteredData] = useState(foodData);
 
   
+  const handleAdd = (id) => {
+      const cart = foodData.find((data) => data.id == id);
+      if (!addCart.some((item) => item.id === cart.id)) {
+        setAddCart([...addCart, cart]);
+      }
+  }
+  console.log(addCart, "addcart");
+
   const handleLike = (id) => {
     const result = foodData.find((data) => data.id == id);
     if (!likeItem.some((item) => item.id === result.id)) {
@@ -143,8 +151,8 @@ export default function Foodies() {
                         </h3>
 
                         <div className="d-flex flex-wrap mt-3">
-                          <a href="#" className="btn-cart me-3 px-4 pt-3 pb-3">
-                            <h5 className="text-uppercase m-0">Add to Cart</h5>
+                          <a onClick={() => handleAdd(food.id)} className="btn-cart me-3 px-4 pt-3 pb-3" style={{cursor: "pointer"}}>
+                            <h5 className="text-uppercase m-0" >Add to Cart</h5>
                           </a>
                           <a  onClick={() => handleLike(food.id)}  className="btn-wishlist px-4 pt-3 ">
                             <FaHeart

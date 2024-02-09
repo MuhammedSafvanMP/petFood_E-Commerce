@@ -4,7 +4,8 @@ export const foodData = [
         image: "./images/item16.jpg",
         title: "Safu",
         price: 18,
-        rating: 5
+        rating: 5,
+        amount: 1
 
     },
     {
@@ -12,7 +13,8 @@ export const foodData = [
         image: "./images/item15.jpg",
         title: "Anas",
         price: 30,
-        rating: 3
+        rating: 3,
+        amount: 1,
     },
     {
         id: 3,
@@ -20,7 +22,8 @@ export const foodData = [
         title: "Niahal",
         price: 25,
         rating: 4,
-        category: "bird"
+        category: "bird",
+        amount: 1,
     },
     {
         id: 4,
@@ -28,7 +31,8 @@ export const foodData = [
         title: "Anshad",
         price: 22,
         rating: 5,
-        category: "bird"
+        category: "bird",
+        amount: 1
     },
     {
         id: 5,
@@ -36,7 +40,8 @@ export const foodData = [
         title: "Jawadh",
         price: 17,
         rating: 3,
-        category: "cat"
+        category: "cat",
+        amount: 1,
     },
     {
         id: 6,
@@ -44,7 +49,8 @@ export const foodData = [
         title: "Mufeedh",
         price: 25,
         rating: 3,
-        category: "fish"
+        category: "fish",
+        amount: 1,
 
     },
     {
@@ -53,7 +59,8 @@ export const foodData = [
         title: "Sanin",
         price: 15,
         rating: 4,
-        category: "cat"
+        category: "cat",
+        amount: 1
     },
     {
         id: 8,
@@ -61,14 +68,16 @@ export const foodData = [
         title: "Hudhaif",
         price: 20,
         rating: 5,
-        category: "fish"
+        category: "fish",
+        amount: 1
     },
     {
         id: 9,
         image: "./images/item9.jpg", 
         title: "Hudhaif",
         price: 20,
-        rating: 5
+        rating: 5,
+        amount: 1
     },
     {
         id: 10,
@@ -76,13 +85,15 @@ export const foodData = [
         title: "Hudhaif",
         price: 20,
         rating: 5,
-        category: "dog"
+        category: "dog",
+        amount: 1
     },
     {
         id: 11,
         image: "./images/item9.jpg", 
         title: "Hudhaif",
         price: 20,
-        rating: 5
+        rating: 5,
+        amount: 1
     },
 ]

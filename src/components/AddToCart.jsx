@@ -1,6 +1,43 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { globalContext } from "../context/GlobalContext";
+import { FaPlusSquare } from "react-icons/fa";
+import { FaMinusSquare } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 export default function AddToCart() {
+  const [likeItem, setLikeItem, addCart, setAddCart] =
+    useContext(globalContext);
+    const [total, setTotal] = useState(0);
+
+    const handlePrice = () => {
+      const totalPrice = addCart.reduce((acc, item) => acc + item.price * item.amount, 0);
+      setTotal(totalPrice);
+    };
+  
+    useEffect(() => {
+      handlePrice();
+    });
+
+    const handleDelete = (id) => {
+      setAddCart(prevAddCart => prevAddCart.filter((value) => value.id !== id))
+   }
+  
+  // Calculate the total price using reduce
+  // const calculateTotal = () => {
+  //   const totalPrice = addCart.reduce(
+  //     (acc, cartItem) => acc + cartItem.price,
+  //     0
+  //   );
+  //   setTotal(totalPrice, "total price");
+  // };
+
+
+
+
+  // ... rest of your component
+
+  // console.log(Object.values(addCart), 'HELLO');
+
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
       <div className="container py-5 h-100">
@@ -21,7 +58,7 @@ export default function AddToCart() {
                     <div className="d-flex justify-content-between align-items-center mb-4">
                       <div>
                         <p className="mb-1">Shopping cart</p>
-                        <p className="mb-0">You have 4 items in your cart</p>
+                        <p className="mb-0">You have {addCart.length} items in your cart</p>
                       </div>
                       <div>
                         <p className="mb-0">
@@ -33,37 +70,67 @@ export default function AddToCart() {
                       </div>
                     </div>
 
-                    <div className="card mb-3">
-                      <div className="card-body">
-                        <div className="d-flex justify-content-between">
-                          <div className="d-flex flex-row align-items-center">
-                            <div>
-                              <img
-                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                className="img-fluid rounded-3"
-                                alt="Shopping item"
-                                style={{ width: "65px" }}
-                              />
-                            </div>
-                            <div className="ms-3">
-                              <h5>Iphone 11 pro</h5>
-                              <p className="small mb-0">256GB, Navy Blue</p>
+                    {addCart &&
+                      addCart.map((cart) => {
+                        return (
+                          <div className="card mb-3" key={cart.id}>
+                            <div className="card-body">
+                              <div className="d-flex justify-content-between">
+                                <div className="d-flex flex-row align-items-center">
+                                  <div>
+                                    <img
+                                      src={cart.image}
+                                      className="img-fluid rounded-3"
+                                      alt="Shopping item"
+                                      style={{ width: "65px" }}
+                                    />
+                                  </div>
+                                  <div className="ms-3">
+                                    <h5> {cart.title} </h5>
+                                   
+                                  </div>
+                                </div>
+                                <div className="d-flex flex-row align-items-center">
+                                  <div className="input-group product-qty align-items-center w-25">
+                                    <span className="input-group-btn">
+                                      <button
+                                        type="button"
+                                        className="quantity-left-minus btn btn-light btn-number"
+                                        data-type="minus"
+                                      >
+                                        <FaPlusSquare />
+                                      </button>
+                                    </span>
+                                    <input
+                                      type="text"
+                                      id="quantity"
+                                      name="quantity"
+                                      className="form-control input-number text-center p-2 mx-1"
+                                      value="1"
+                                    />
+                                    <span className="input-group-btn">
+                                      <button
+                                        type="button"
+                                        className="quantity-right-plus btn btn-light btn-number"
+                                        data-type="plus"
+                                        data-field=""
+                                      >
+                                        <FaMinusSquare />
+                                      </button>
+                                    </span>
+                                  </div>
+                                  <div style={{ width: "80px" }}>
+                                    <h5 className="mb-0">$ {cart.price} </h5>
+                                  </div>
+                                  <a style={{ color: "#cecece" }}>
+                                  <MdDelete style={{fontSize: "3rem", color: "black", cursor: "pointer"}} onClick={() => handleDelete(cart.id)} />
+                                  </a>
+                                </div>
+                              </div>
                             </div>
                           </div>
-                          <div className="d-flex flex-row align-items-center">
-                            <div style={{ width: "50px" }}>
-                              <h5 className="fw-normal mb-0">2</h5>
-                            </div>
-                            <div style={{ width: "80px" }}>
-                              <h5 className="mb-0">$900</h5>
-                            </div>
-                            <a href="#!" style={{ color: "#cecece" }}>
-                              <i className="fas fa-trash-alt"></i>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                        );
+                      })}
 
                     {/* Repeat similar structure for other items... */}
                   </div>
@@ -73,39 +140,10 @@ export default function AddToCart() {
                       <div className="card-body">
                         {/* Remaining code for card details */}
 
-                        <div className="d-flex justify-content-between">
-                          <div className="d-flex flex-row align-items-center">
-                            <div>
-                              <img
-                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                                className="img-fluid rounded-3"
-                                alt="Shopping item"
-                                style={{ width: "65px" }}
-                              />
-                            </div>
-                            <div className="ms-3">
-                              <h5>Iphone 11 pro</h5>
-                              <p className="small mb-0">256GB, Navy Blue</p>
-                            </div>
-                          </div>
-                          <div className="d-flex flex-row align-items-center">
-                            <div style={{ width: "50px" }}>
-                              <h5 className="fw-normal mb-0">2</h5>
-                            </div>
-                            <div style={{ width: "80px" }}>
-                              <h5 className="mb-0">$900</h5>
-                            </div>
-                            <a href="#!" style={{ color: "#cecece" }}>
-                              <i className="fas fa-trash-alt"></i>
-                            </a>
-                          </div>
-                        </div>
-
-                        <p className="small mb-2">Card type</p>
-                        <a href="#!" type="submit" className="text-white">
+                        <a type="submit" className="text-white">
                           <i className="fab fa-cc-mastercard fa-2x me-2"></i>
                         </a>
-                        <a href="#!" type="submit" className="text-white">
+                        <a type="submit" className="text-white">
                           <i className="fab fa-cc-visa fa-2x me-2"></i>
                         </a>
                         <a href="#!" type="submit" className="text-white">
@@ -119,7 +157,6 @@ export default function AddToCart() {
                           <div className="form-outline form-white mb-4">
                             <input
                               type="text"
-                              id="typeName"
                               className="form-control form-control-lg"
                               size="17"
                               placeholder="Cardholder's Name"
@@ -132,7 +169,6 @@ export default function AddToCart() {
                           <div className="form-outline form-white mb-4">
                             <input
                               type="text"
-                              id="typeText"
                               className="form-control form-control-lg"
                               size="17"
                               placeholder="1234 5678 9012 3457"
@@ -149,7 +185,6 @@ export default function AddToCart() {
                               <div className="form-outline form-white">
                                 <input
                                   type="text"
-                                  id="typeExp"
                                   className="form-control form-control-lg"
                                   placeholder="MM/YYYY"
                                   size="7"
@@ -166,7 +201,6 @@ export default function AddToCart() {
                               <div className="form-outline form-white">
                                 <input
                                   type="password"
-                                  id="typeText"
                                   className="form-control form-control-lg"
                                   placeholder="&#9679;&#9679;&#9679;"
                                   size="1"
@@ -206,7 +240,7 @@ export default function AddToCart() {
                           className="btn btn-info btn-block btn-lg"
                         >
                           <div className="d-flex justify-content-between">
-                            <span>$4818.00</span>
+                            <span>${total}.00</span>
                             <span>
                               Checkout{" "}
                               <i className="fas fa-long-arrow-alt-right ms-2"></i>

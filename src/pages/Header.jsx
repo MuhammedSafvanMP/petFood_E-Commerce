@@ -5,7 +5,7 @@ import { IoSearch } from "react-icons/io5";
 import { Link, NavLink } from 'react-router-dom';
 
 
-export default function Header() {
+export default function Header({countCart,countLikeItem}) {
   return (
     <header>
       <div className="container py-2">
@@ -51,29 +51,35 @@ export default function Header() {
         <div className="d-flex d-lg-none align-items-end mt-3">
             <ul className="d-flex justify-content-end list-unstyled m-0">
               <li>
-                <a className="mx-3">
+                <NavLink to='/addcart' className="mx-3">
                   {/* Replace with the actual icon component or image */}
+                
                   <span className="fs-4"> <FaUser /> </span>
-                </a>
+                </NavLink>
               </li>
               <li>
                 <NavLink to='/whishlist' className="mx-3">
                   {/* Replace with the actual icon component or image */}
                   <span className="fs-4"> <FaHeart /> </span>
+                  <span className="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
+                    {countLikeItem}
+                  </span>
                 </NavLink>
               </li>
               <li>
-                <a href="#" className="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
+                <NavLink to='/addcart'  className="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
                   aria-controls="offcanvasCart">
                   {/* Replace with the actual icon component or image */}
-                  <span className="fs-4 position-relative"> <FaCartShopping /> </span>
+                 
+                      <span className="fs-4 position-relative"> <FaCartShopping /> </span>
+               
                   <span className="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                    03
+                    {countCart}
                   </span>
-                </a>
+                </NavLink>
               </li>
               <li>
-                <a href="#" className="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
+                <a  className="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
                   aria-controls="offcanvasSearch">
                   {/* Replace with the actual icon component or image */}
                   <span className="fs-4"> <IoSearch icon="tabler:search"  /> </span>
@@ -119,26 +125,29 @@ export default function Header() {
               <div className="d-none d-lg-flex align-items-end">
                 <ul className="d-flex justify-content-end list-unstyled m-0">
                   <li>
-                    <a href="account.html" className="mx-3">
+                    <NavLink to='/addcart' className="mx-3">
                       {/* Replace with the actual icon component or image */}
                       <span className="fs-4"> <FaUser /> </span>
-                    </a>
+                    </NavLink>
                   </li>
                   <li>
                     <NavLink to='/whishlist' className="mx-3">
                       {/* Replace with the actual icon component or image */}
                       <span className="fs-4"> <FaHeart /> </span>
+                        <span className="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
+                        {countLikeItem}
+                      </span>
                     </NavLink>
                   </li>
                   <li>
-                    <a href="#" className="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
+                    <NavLink to='/addcart' className="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
                       aria-controls="offcanvasCart">
                       {/* Replace with the actual icon component or image */}
                       <span className="fs-4 position-relative"> <FaCartShopping /> </span>
                       <span className="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                        03
+                        {countCart}
                       </span>
-                    </a>
+                    </NavLink>
                   </li>
                 </ul>
               </div>

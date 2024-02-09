@@ -11,11 +11,12 @@ import AddToCart from './components/AddToCart'
 
 export default function App() {
    const [likeItem, setLikeItem] = useState([]);
+   const [addCart, setAddCart] = useState([]);
   return (
    <>
-    <globalContext.Provider value={[ likeItem, setLikeItem]}>
+    <globalContext.Provider value={[ likeItem, setLikeItem, addCart, setAddCart]}>
 
-      <Header />
+      <Header countCart= {addCart.length} countLikeItem = {likeItem.length} />
       <Routes>
        
           
