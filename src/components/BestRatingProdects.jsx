@@ -12,19 +12,8 @@ import { globalContext } from '../context/GlobalContext';
 export default function BestRatingProdects() {
 
   const Navigate = useNavigate();
-  const [ likeItem, setLikeItem] = useContext(globalContext)
+  const [ likeItem, setLikeItem,addCart, setAddCart, handleAdd, handleLike] = useContext(globalContext)
 
-
-  const handleLike = (id) => {
-    const result = foodData.find((data) => data.id == id);
-    if (!likeItem.some((item) => item.id === result.id)) {
-      setLikeItem([...likeItem, result]);
-    }
-  }
-  
-  useEffect(() => {   
-  }, [handleLike]);
-   
 
 
   useEffect(() => {
@@ -108,18 +97,17 @@ export default function BestRatingProdects() {
                   <h3 className="secondary-font text-primary">${food.price}.00</h3>
 
                   <div className="d-flex flex-wrap mt-3">
-                    <a>
-                      <h5 className="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a  onClick={() => handleLike(food.id)}  className="btn-wishlist px-4 pt-3 ">
+                          <a onClick={() => handleAdd(food.id)} className="btn-cart me-3 px-4 pt-3 pb-3" style={{cursor: "pointer"}}>
+                            <h5 className="text-uppercase m-0" >Add to Cart</h5>
+                          </a>
+                          <a  onClick={() => handleLike(food.id)}  className="btn-wishlist px-4 pt-3 ">
                             <FaHeart
                               icon="fluent:heart-28-filled"
                               className="fs-5"
                              
                             />
-                    </a>
-                  </div>
-
+                          </a>
+                      </div>
 
                 </div>
 

@@ -4,8 +4,7 @@ import { globalContext } from '../context/GlobalContext';
 import { MdDelete } from "react-icons/md";
 
 export default function Wishlist() {
-
-  const [ likeItem, setLikeItem, addCart, setAddCart] = useContext(globalContext)
+  const [ likeItem, setLikeItem,addCart, setAddCart, handleAdd, handleLike] = useContext(globalContext)
 
   const handleDelete = (id) => {
      setLikeItem(prevLikeItem => prevLikeItem.filter((value) => value.id !== id))
@@ -76,7 +75,7 @@ export default function Wishlist() {
                   <td className="py-4 align-middle">
                     <div className="d-flex align-items-center">
                       <div className="me-4">
-                        <button className="btn btn-dark p-3 text-uppercase fs-6 btn-rounded-none w-100">
+                        <button onClick={() => handleAdd(data.id)} className="btn btn-dark p-3 text-uppercase fs-6 btn-rounded-none w-100">
                           Add to cart
                         </button>
                       </div>
@@ -89,9 +88,7 @@ export default function Wishlist() {
                 )
             })
           }  
-            
-              
-          
+                       
           </tbody>
         </table>
       </div>

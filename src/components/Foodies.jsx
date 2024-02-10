@@ -1,4 +1,4 @@
-import { useState,useContext,useEffect } from "react";
+import { useState,useContext} from "react";
 import { foodData } from "../data/data";
 import { FaHeart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
@@ -8,30 +8,11 @@ import { globalContext } from '../context/GlobalContext';
 
 export default function Foodies() {
     const Navigate = useNavigate()
-  const [ likeItem, setLikeItem,addCart, setAddCart] = useContext(globalContext)
+  const [ likeItem, setLikeItem,addCart, setAddCart, handleAdd, handleLike] = useContext(globalContext)
 
 
   const [filteredData, setFilteredData] = useState(foodData);
 
-  
-  const handleAdd = (id) => {
-      const cart = foodData.find((data) => data.id == id);
-      if (!addCart.some((item) => item.id === cart.id)) {
-        setAddCart([...addCart, cart]);
-      }
-  }
-  console.log(addCart, "addcart");
-
-  const handleLike = (id) => {
-    const result = foodData.find((data) => data.id == id);
-    if (!likeItem.some((item) => item.id === result.id)) {
-      setLikeItem([...likeItem, result]);
-    }
-  }
-  
-  useEffect(() => {   
-  }, [handleLike]);
-   
 
   const handleAll = () => {
     setFilteredData(foodData);
@@ -57,7 +38,7 @@ export default function Foodies() {
     setFilteredData(birdData);
   };
 
-  console.log(filteredData);
+
 
   return (
     <section id="foodies" className="my-5">
@@ -127,11 +108,12 @@ export default function Foodies() {
                         onClick={() => Navigate(`${food.id}`)} 
                         src={food.image}
                         className="img-fluid rounded-4"
+                        style={{cursor: "pointer"}}
                         alt="image"
                       />
                     </li>
                     <div className="card-body p-0">
-                      <a href="single-product.html">
+                      <a>
                         <h3 className="card-title pt-4 m-0"> {food.title} </h3>
                       </a>
 

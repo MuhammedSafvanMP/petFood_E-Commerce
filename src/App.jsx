@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useContext} from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Header from './pages/Header'
 import Home from './pages/Home'
@@ -10,16 +10,13 @@ import { globalContext } from './context/GlobalContext'
 import AddToCart from './components/AddToCart'
 
 export default function App() {
-   const [likeItem, setLikeItem] = useState([]);
-   const [addCart, setAddCart] = useState([]);
+  const [ likeItem, setLikeItem,addCart, setAddCart] = useContext(globalContext)
+
   return (
    <>
-    <globalContext.Provider value={[ likeItem, setLikeItem, addCart, setAddCart]}>
 
       <Header countCart= {addCart.length} countLikeItem = {likeItem.length} />
-      <Routes>
-       
-          
+      <Routes> 
           <Route path="/" element={<Home />} />
            <Route path='/whishlist' element={ <Whishlist />  } />
           <Route path='/:id' element={ <SingleProduct />  } />
@@ -27,7 +24,6 @@ export default function App() {
       </Routes>
       <Services />
       <Footer />
-    </globalContext.Provider>
    </>
   )
 }

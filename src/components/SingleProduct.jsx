@@ -1,14 +1,17 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import 'swiper/swiper-bundle.css';
 import { foodData } from '../data/data';
 import { useParams } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
-import { FaPlusSquare } from "react-icons/fa";
-import { FaMinusSquare } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
+import { globalContext } from '../context/GlobalContext';
 
 
 export default function SingleProduct() {
+
+  const [ likeItem, setLikeItem,addCart, setAddCart, handleAdd, handleLike] = useContext(globalContext)
+
+
    const { id } = useParams();
    const product = foodData.find((data) => data.id == id);
   return (
@@ -22,7 +25,7 @@ export default function SingleProduct() {
               <div className="swiper product-large-slider">
                 <div className="swiper-wrapper">
                   <div className="swiper-slide">
-                    <img width={"80%"} src={`.${product.image}`} className="img-fluid"  />
+                    <img width={"80%"} src={`.${product.image}`} className="img-fluid" style={{cursor: "pointer"}}  />
                   </div>
 
                 </div>
@@ -60,30 +63,12 @@ export default function SingleProduct() {
              
             
               <div className="product-quantity pt-2">
-                <div className="stock-number text-dark"><em>2 in stock</em></div>
                 <div className="stock-button-wrap">
-
-                  <div className="input-group product-qty align-items-center w-25">
-                    <span className="input-group-btn">
-                      <button type="button" className="quantity-left-minus btn btn-light btn-number" data-type="minus">
-                      <FaPlusSquare />
-                      </button>
-                    </span>
-                    <input type="text" id="quantity" name="quantity"
-                      className="form-control input-number text-center p-2 mx-1" value="1" />
-                    <span className="input-group-btn">
-                      <button type="button" className="quantity-right-plus btn btn-light btn-number" data-type="plus"
-                        data-field="">
-                       <FaMinusSquare />
-                      </button>
-                    </span>
-                  </div>
-
                   <div className="d-flex flex-wrap pt-4">
-                    <a href="#" className="btn-cart me-3 px-4 pt-3 pb-3">
+                    <a onClick={() => handleAdd(product.id)}  className="btn-cart me-3 px-4 pt-3 pb-3" style={{cursor: "pointer"}}>
                       <h5 className="text-uppercase m-0">Add to Cart</h5>
                     </a>
-                    <a  className="btn-wishlist px-4 pt-3 ">
+                    <a onClick={() => handleLike(product.id)}  className="btn-wishlist px-4 pt-3 " style={{cursor: "pointer"}}>
                     <FaHeart
                       icon="fluent:heart-28-filled"
                       className="fs-5"        

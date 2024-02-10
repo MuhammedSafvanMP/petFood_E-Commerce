@@ -13,27 +13,27 @@ export default function Footer() {
             <div className="social-links">
               <ul className="d-flex list-unstyled gap-2">
                 <li className="social">
-                  <a href="#">
+                  <a>
                     <iconify-icon className="social-icon" icon="ri:facebook-fill"></iconify-icon>
                   </a>
                 </li>
                 <li className="social">
-                  <a href="#">
+                  <a>
                     <iconify-icon className="social-icon" icon="ri:twitter-fill"></iconify-icon>
                   </a>
                 </li>
                 <li className="social">
-                  <a href="#">
+                  <a>
                     <iconify-icon className="social-icon" icon="ri:pinterest-fill"></iconify-icon>
                   </a>
                 </li>
                 <li className="social">
-                  <a href="#">
+                  <a>
                     <iconify-icon className="social-icon" icon="ri:instagram-fill"></iconify-icon>
                   </a>
                 </li>
                 <li className="social">
-                  <a href="#">
+                  <a>
                     <iconify-icon className="social-icon" icon="ri:youtube-fill"></iconify-icon>
                   </a>
                 </li>
@@ -69,19 +69,19 @@ export default function Footer() {
             <h3>Help Center</h3>
               <ul className="menu-list list-unstyled">
                 <li className="menu-item">
-                  <a href="#" className="nav-link">FAQs</a>
+                  <a  className="nav-link">FAQs</a>
                 </li>
                 <li className="menu-item">
-                  <a href="#" className="nav-link">Payment</a>
+                  <a  className="nav-link">Payment</a>
                 </li>
                 <li className="menu-item">
-                  <a href="#" className="nav-link">Returns & Refunds</a>
+                  <a  className="nav-link">Returns & Refunds</a>
                 </li>
                 <li className="menu-item">
-                  <a href="#" className="nav-link">Checkout</a>
+                  <a  className="nav-link">Checkout</a>
                 </li>
                 <li className="menu-item">
-                  <a href="#" className="nav-link">Delivery Information</a>
+                  <a  className="nav-link">Delivery Information</a>
                 </li>
               </ul>
           </div>
