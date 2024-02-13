@@ -1,11 +1,40 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaUser, FaHeart } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { globalContext } from '../context/GlobalContext';
+
+export default function Header({ countCart, countLikeItem }) {
+  const Navigate = useNavigate(); 
+
+  const [likeItem, setLikeItem, addCart, setAddCart,handleAdd, handleLike, filteredData, setFilteredData, formData, setFormData, loginData, setLoginData, user, setUser,search, setSearch] = useContext(globalContext);
+
+  // const userName = user.map((data) =>   data.name )
+  
+ 
+  
+  const handleLogout = () => {
+    setUser([
+      {
+        id: 0,
+        name: '',
+        email: '',
+        password: '',
+        likeItem: [],
+        cartItems: []
+      }
+    ]);
+     setLikeItem([]);
+    setAddCart([]);
+    
+    Navigate('/');
+  };
+  
 
 
-export default function Header({countCart,countLikeItem}) {
+
+
   return (
     <header>
       <div className="container py-2">
@@ -21,21 +50,14 @@ export default function Header({countCart,countLikeItem}) {
 
           <div className="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
             <div className="search-bar border rounded-2 px-3 border-dark-subtle">
-              <form id="search-form" className="text-center d-flex align-items-center" action="" method="">
-                <input type="text" className="form-control border-0 bg-transparent"
-                  placeholder="Search for more than 10,000 products" />
+              <form onClick={() => Navigate('/cards')} id="search-form" className="text-center d-flex align-items-center" action="" method="">
+                <input  type="text" className="form-control border-0 bg-transparent"
+                  placeholder="Search Items" onChange={(e) =>  setSearch(e.target.value)} />
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                   <path fill="currentColor"
                     d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" />
                 </svg>
               </form>
-            </div>
-          </div>
-
-          <div className="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
-            <div className="support-box text-end d-none d-xl-block">
-              <span className="fs-6 secondary-font text-muted">Email</span>
-              <h5 className="mb-0">waggy@gmail.com</h5>
             </div>
           </div>
         </div>
@@ -50,16 +72,22 @@ export default function Header({countCart,countLikeItem}) {
 
         <div className="d-flex d-lg-none align-items-end mt-3">
             <ul className="d-flex justify-content-end list-unstyled m-0">
+              
               <li>
-                <NavLink to='/addcart' className="mx-3">
-                  {/* Replace with the actual icon component or image */}
-                
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle mx-3"  id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <span className="fs-4"> <FaUser /> </span>
-                </NavLink>
+                  <h5 className="mb-0 fs-6">  </h5>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><Link class="dropdown-item"to='/signup' >Sign Up</Link></li>
+                <li><Link class="dropdown-item"to='/login' >Login</Link></li>
+                <li><a class="dropdown-item" onClick={handleLogout} >Logout</a></li>
+              </ul>
+            </li>
               </li>
               <li>
-                <NavLink to='/whishlist' className="mx-3">
-                  {/* Replace with the actual icon component or image */}
+                <NavLink  className="mx-3">
                   <span className="fs-4"> <FaHeart /> </span>
                   <span className="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
                     {countLikeItem}
@@ -67,12 +95,8 @@ export default function Header({countCart,countLikeItem}) {
                 </NavLink>
               </li>
               <li>
-                <NavLink to='/addcart'  className="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
-                  aria-controls="offcanvasCart">
-                  {/* Replace with the actual icon component or image */}
-                 
-                      <span className="fs-4 position-relative"> <FaCartShopping /> </span>
-               
+              <NavLink   className="mx-3"> 
+                      <span className="fs-4 position-relative"> <FaCartShopping /> </span>               
                   <span className="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
                     {countCart}
                   </span>
@@ -81,7 +105,6 @@ export default function Header({countCart,countLikeItem}) {
               <li>
                 <a  className="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
                   aria-controls="offcanvasSearch">
-                  {/* Replace with the actual icon component or image */}
                   <span className="fs-4"> <IoSearch icon="tabler:search"  /> </span>
                 </a>
               </li>
@@ -100,13 +123,6 @@ export default function Header({countCart,countLikeItem}) {
             </div>
 
             <div className="offcanvas-body justify-content-between">
-              <select className="filter-categories border-0 mb-0 me-5">
-                <option>Shop by Category</option>
-                <option>Premium Food</option>
-                <option>Lower Food</option>
-                <option>Rating Food</option>
-                <option>Low Rating Food</option>
-              </select>
 
               <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
               <li class="nav-item">
@@ -115,24 +131,35 @@ export default function Header({countCart,countLikeItem}) {
                 </NavLink>
               </li>
               <li class="nav-item">
-                <a id='product' class="nav-link">Product</a>
+              <NavLink to='/product'>
+                <a  class="nav-link">Product</a>
+              </NavLink>
               </li>
               <li class="nav-item">
-                <a id='service' class="nav-link">Service</a>
+              <NavLink to='/services'>
+                <a  class="nav-link">Service</a>
+              </NavLink>
               </li>
             </ul>
 
               <div className="d-none d-lg-flex align-items-end">
                 <ul className="d-flex justify-content-end list-unstyled m-0">
                   <li>
-                    <NavLink to='/addcart' className="mx-3">
-                      {/* Replace with the actual icon component or image */}
-                      <span className="fs-4"> <FaUser /> </span>
-                    </NavLink>
+                
+                    <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle mx-3"  id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span className="fs-4"> <FaUser /> </span>
+                  <h5 className="mb-0 fs-6">  </h5>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><Link class="dropdown-item"to='/signup' >Sign Up</Link></li>
+                <li><Link class="dropdown-item"to='/login' >Login</Link></li>
+                <li><a class="dropdown-item" onClick={handleLogout} >Logout</a></li>
+              </ul>
+            </li>
                   </li>
                   <li>
-                    <NavLink to='/whishlist' className="mx-3">
-                      {/* Replace with the actual icon component or image */}
+                    <NavLink  className="mx-3">
                       <span className="fs-4"> <FaHeart /> </span>
                         <span className="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
                         {countLikeItem}
@@ -140,9 +167,7 @@ export default function Header({countCart,countLikeItem}) {
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to='/addcart' className="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
-                      aria-controls="offcanvasCart">
-                      {/* Replace with the actual icon component or image */}
+                  <NavLink   className="mx-3"> 
                       <span className="fs-4 position-relative"> <FaCartShopping /> </span>
                       <span className="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
                         {countCart}

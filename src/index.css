@@ -461,7 +461,6 @@ iconify-icon.quote-icon {
   color: #908F8D;
   line-height: normal;
   letter-spacing: 0.02125rem;
-  text-transform: capitalize;
   border-radius: 0.25rem;
   border: 1px solid rgba(65, 64, 62, 0.20);
   background: #FFF;

@@ -6,6 +6,21 @@ export const globalContext = createContext();
 export const GlobalProvider = ({ children }) => {
   const [likeItem, setLikeItem] = useState([]);
   const [addCart, setAddCart] = useState([]);
+  const [search, setSearch] = useState("");
+  const [filteredData, setFilteredData] = useState(foodData);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+  const [loginData, setLoginData] = useState({
+    email: '',
+    password: '',
+  });
+
+  const [user, setUser] = useState([]);
+
+
 
 
   const handleAdd = (id) => {
@@ -23,12 +38,14 @@ const handleLike = (id) => {
   }
 }
 
+
+
 useEffect(() => {   
-}, [handleLike, handleAdd]);
+}, [handleLike, handleAdd, formData]);
  
 
   return (
-    <globalContext.Provider value={[likeItem, setLikeItem, addCart, setAddCart,handleAdd, handleLike]}>
+    <globalContext.Provider value={[likeItem, setLikeItem, addCart, setAddCart,handleAdd, handleLike, filteredData, setFilteredData, formData, setFormData, loginData, setLoginData, user, setUser,search, setSearch]}>
       {children}
     </globalContext.Provider>
   );

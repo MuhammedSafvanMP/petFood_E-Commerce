@@ -1,4 +1,4 @@
-import { useState,useContext} from "react";
+import { useContext} from "react";
 import { foodData } from "../data/data";
 import { FaHeart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
@@ -8,10 +8,10 @@ import { globalContext } from '../context/GlobalContext';
 
 export default function Foodies() {
     const Navigate = useNavigate()
-  const [ likeItem, setLikeItem,addCart, setAddCart, handleAdd, handleLike] = useContext(globalContext)
+  const [ likeItem, setLikeItem,addCart, setAddCart, handleAdd, handleLike, filteredData, setFilteredData] = useContext(globalContext)
 
 
-  const [filteredData, setFilteredData] = useState(foodData);
+  // const [filteredData, setFilteredData] = useState(foodData);
 
 
   const handleAll = () => {

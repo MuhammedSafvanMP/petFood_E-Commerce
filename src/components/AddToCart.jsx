@@ -75,7 +75,7 @@ export default function AddToCart() {
                                       src={cart.image}
                                       className="img-fluid rounded-3"
                                       alt="Shopping item"
-                                      style={{ width: "65px" }}
+                                      style={{ minWidth: "55px" }}
                                     />
                                   </div>
                                   <div className="ms-3">
