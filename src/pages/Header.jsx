@@ -1,41 +1,48 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FaUser, FaHeart } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { globalContext } from '../context/GlobalContext';
 
-export default function Header({ countCart, countLikeItem }) {
+export default function Header() {
   const Navigate = useNavigate(); 
 
-  const [likeItem, setLikeItem, addCart, setAddCart,handleAdd, handleLike, filteredData, setFilteredData, formData, setFormData, loginData, setLoginData, user, setUser,search, setSearch] = useContext(globalContext);
-
-  // const userName = user.map((data) =>   data.name )
-  
- 
+  const [handleAdd, handleLike, filteredData, setFilteredData, user, setUser, search, setSearch, handleSignup,show,setShow,products, setProducts] = useContext(globalContext);
   
   const handleLogout = () => {
-    setUser([
-      {
-        id: 0,
-        name: '',
-        email: '',
-        password: '',
-        likeItem: [],
-        cartItems: []
-      }
-    ]);
-     setLikeItem([]);
-    setAddCart([]);
-    
+   setShow(null)
     Navigate('/');
   };
-  
-
-
 
 
   return (
+
+    <>
+
+<div className="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch"
+    aria-labelledby="Search">
+    <div className="offcanvas-header justify-content-center">
+      <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div className="offcanvas-body">
+
+      <div className="order-md-last">
+        <h4 className="text-primary text-uppercase mb-3">
+          Search
+        </h4>
+        <div className="search-bar border rounded-2 border-dark-subtle">
+          <form onClick={() => Navigate('/cards')} id="search-form" className="text-center d-flex align-items-center" action="" method="">
+            <input onChange={(e) =>  setSearch(e.target.value)} type="text" className="form-control border-0 bg-transparent" placeholder="Search Here" />
+            <iconify-icon icon="tabler:search" className="fs-4 me-3"></iconify-icon>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+ 
+
     <header>
       <div className="container py-2">
         <div className="row py-4 pb-0 pb-sm-4 align-items-center">
@@ -43,7 +50,7 @@ export default function Header({ countCart, countLikeItem }) {
           <div className="col-sm-4 col-lg-3 text-center text-sm-start">
             <div className="main-logo">
               <a>
-                <img src="../images/logo.png" alt="logo" className="img-fluid" />
+                <img src="../images/chocolat/logo.png" width={'100px'} alt="logo" className="img-fluid" />
               </a>
             </div>
           </div>
@@ -77,28 +84,29 @@ export default function Header({ countCart, countLikeItem }) {
               <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle mx-3"  id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <span className="fs-4"> <FaUser /> </span>
-                  <h5 className="mb-0 fs-6">  </h5>
+                  <h5 className="mb-0 fs-6"> {show && show.name}   </h5>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><Link class="dropdown-item"to='/signup' >Sign Up</Link></li>
                 <li><Link class="dropdown-item"to='/login' >Login</Link></li>
-                <li><a class="dropdown-item" onClick={handleLogout} >Logout</a></li>
+                <li><Link class="dropdown-item"to='/dashbord' >Admin</Link></li>
+                <li><a class="dropdown-item" style={{cursor:"pointer"}} onClick={handleLogout} >Logout</a></li>
               </ul>
             </li>
               </li>
               <li>
-                <NavLink  className="mx-3">
+                <NavLink to={show && show.name ? '/whishlist' : '/signup'}  className="mx-3">
                   <span className="fs-4"> <FaHeart /> </span>
                   <span className="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                    {countLikeItem}
+                    {show && show.likeItems.length}
                   </span>
                 </NavLink>
               </li>
               <li>
-              <NavLink   className="mx-3"> 
+              <NavLink to={show && show.name ? '/addcart' : '/signup'}    className="mx-3"> 
                       <span className="fs-4 position-relative"> <FaCartShopping /> </span>               
                   <span className="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                    {countCart}
+                    { show && show.cartItems.length}
                   </span>
                 </NavLink>
               </li>
@@ -149,28 +157,30 @@ export default function Header({ countCart, countLikeItem }) {
                     <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle mx-3"  id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <span className="fs-4"> <FaUser /> </span>
-                  <h5 className="mb-0 fs-6">  </h5>
+                  <h5 className="mb-0 fs-6"> {show && show.name}   </h5>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><Link class="dropdown-item"to='/signup' >Sign Up</Link></li>
                 <li><Link class="dropdown-item"to='/login' >Login</Link></li>
+                <li><Link class="dropdown-item"to='/dashbord' >Admin</Link></li>
                 <li><a class="dropdown-item" onClick={handleLogout} >Logout</a></li>
               </ul>
             </li>
                   </li>
                   <li>
-                    <NavLink  className="mx-3">
+                    <NavLink  to={show &&  show.name ? '/whishlist' : '/signup'}   className="mx-3">
                       <span className="fs-4"> <FaHeart /> </span>
                         <span className="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                        {countLikeItem}
+                         {show && show.likeItems.length}
+
                       </span>
                     </NavLink>
                   </li>
                   <li>
-                  <NavLink   className="mx-3"> 
+                  <NavLink to={ show && show.name ? '/addcart' : '/signup'}     className="mx-3"> 
                       <span className="fs-4 position-relative"> <FaCartShopping /> </span>
                       <span className="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                        {countCart}
+                        {show && show.cartItems.length}
                       </span>
                     </NavLink>
                   </li>
@@ -184,5 +194,6 @@ export default function Header({ countCart, countLikeItem }) {
         </nav>
       </div>
     </header>
+    </>
   );
 }

@@ -1,4 +1,4 @@
-import React,{useContext} from 'react'
+import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Header from './pages/Header'
 import Home from './pages/Home'
@@ -6,22 +6,23 @@ import Services from './pages/Services'
 import Footer from './pages/Footer'
 import Whishlist from './components/Whishlist'
 import SingleProduct from './components/SingleProduct'
-import { globalContext } from './context/GlobalContext'
 import AddToCart from './components/AddToCart'
 import Login from './auth/Login'
 import Signup from './auth/Signup'
 import Error from './pages/Error'
 import Foodies from './components/Foodies'
 import Cards from './components/Cards'
+import Dashbord from './admin/Dashbord'
+import Users from './admin/Users'
+import Products from './admin/Products'
+import Update from './admin/Update'
 
 export default function App() {
-  const [ likeItem, setLikeItem,addCart, setAddCart] = useContext(globalContext)
-
 
   return (
    <>
 
-      <Header countCart= {addCart.length} countLikeItem = {likeItem.length} />
+      <Header  />
       <Routes> 
           <Route path="/" element={<Home />} />
            <Route path='/whishlist' element={ <Whishlist />  } />
@@ -32,6 +33,11 @@ export default function App() {
           <Route path='/product' element={ <Foodies />  } />
           <Route path='/services' element={ <Services />  } />
           <Route path='/cards' element={ <Cards />  } />
+          <Route path='/dashbord' element={ <Dashbord />  } />
+          <Route path='/users' element={ <Users />  } />
+          <Route path='/products' element={ <Products />  } />
+          <Route path='/products/:id' element={ <Update  />  } />
+
           <Route path='*' element={ <Error /> } />
       </Routes>
       <Services />

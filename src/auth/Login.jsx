@@ -3,28 +3,36 @@ import { globalContext } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-  const [likeItem, setLikeItem, addCart, setAddCart, handleAdd, handleLike, filteredData, setFilteredData, formData, setFormData, loginData, setLoginData, user, setUser] = useContext(globalContext);
+  const [ handleAdd, handleLike, filteredData, setFilteredData, user, setUser, search, setSearch, handleSignup,show,setShow,products, setProducts] = useContext(globalContext);
 
   const Navigate = useNavigate();
 
+ 
+  
+
   const handleLogin = (e) => {
     e.preventDefault();
-    const users = JSON.parse(localStorage.getItem('users'));
+  
+    let logemail = e.target.email.value;
+    let logpassword = e.target.password.value;
 
-    if (e.target.email.value && e.target.password.value) {
-      const foundUser = users.find((user) => user.email === e.target.email.value);
-
-      if (foundUser) {
-        if (foundUser.password === e.target.password.value) {
-          Navigate('/');
-        } else {
-          alert("Incorrect password. Please try again.");
-        }
-      } else {
-        alert("Email not found. Please create a new account.");
-      }
+    
+    let userData = user.find((item) => item.email == logemail);
+    
+    if (userData && userData.password == logpassword) {
+      setShow(userData);
+      Navigate("/");
+    } else {
+      setShow(null);
+      alert("invalid user");
     }
   };
+
+   
+  
+  
+  
+  
 
   return (
     <section className="login-tabs padding-large">
@@ -34,7 +42,7 @@ export default function Login() {
             <p className="mb-0"> Log-In With Email</p>
             <hr className="my-1" />
 
-            <form id="form1" className="form-group flex-wrap" onSubmit={(e) => handleLogin(e)}>
+            <form  className="form-group flex-wrap" onSubmit={(e) => handleLogin(e)}>
               <div className="form-input col-lg-12 my-4">
                 <input
                   type="email"
@@ -63,3 +71,6 @@ export default function Login() {
     </section>
   );
 }
+
+
+

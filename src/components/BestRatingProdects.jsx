@@ -1,7 +1,6 @@
 import React, { useEffect,useContext } from 'react';
 import Swiper from 'swiper';
 import 'swiper/swiper-bundle.css'; 
-import { foodData } from '../data/data';
 import { FaHeart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +11,7 @@ import { globalContext } from '../context/GlobalContext';
 export default function BestRatingProdects() {
 
   const Navigate = useNavigate();
-  const [ likeItem, setLikeItem,addCart, setAddCart, handleAdd, handleLike] = useContext(globalContext)
+  const [ handleAdd, handleLike, filteredData, setFilteredData, user, setUser, search, setSearch, handleSignup,show,setShow,products, setProducts] = useContext(globalContext)
 
 
 
@@ -71,8 +70,8 @@ export default function BestRatingProdects() {
       <div className=" swiper bestselling-swiper">
         <div className="swiper-wrapper">
     {
-        foodData&&
-        foodData.filter(food => food.rating === 5).map((food) => {
+        products&&
+        products.filter(food => food.rating === 5).map((food) => {
           return(
             <div className="swiper-slide" key={food.id}>
             <div className="card position-relative">

@@ -1,20 +1,33 @@
-import React, { useContext } from 'react';
-import { globalContext } from '../context/GlobalContext';
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-export default function SignUp() {
- const [ handleAdd, handleLike, filteredData, setFilteredData, user, setUser, search, setSearch, handleSignup,show,setShow,products, setProducts] = useContext(globalContext);
+export default function Dashbord() {
 
-  
+ const Navigate = useNavigate();
 
+  const admin = {
+    name: "safu",
+    email: "safu@gmail.com",
+    password: "12345"
+  }
+
+  const handleAdmin = (e) => {
+    e.preventDefault()
+    
+    if(e.target.name.value == admin.name && e.target.email.value == admin.email && e.target.password.value == admin.password)
+      Navigate('/users')
+    else 
+      alert("this admin not")
+  }
   return (
-    <section className="login-tabs padding-large">
+<section className="login-tabs padding-large">
       <div className="container my-5 py-5">
         <div className="row">
           <div className="col-lg-8 offset-lg-2 mt-5">
-            <p className="mb-0">Sign-Up With Email</p>
+            <p className="mb-0">Admin  Login</p>
             <hr className="my-1" />
 
-            <form  className="form-group flex-wrap" onSubmit={(e) => handleSignup(e)}>
+            <form  className="form-group flex-wrap" onSubmit={(e) => handleAdmin(e)}>
               <div className="form-input col-lg-12 my-4">
                 <input
                   type="text"
@@ -31,7 +44,7 @@ export default function SignUp() {
                 <input
                   type="password"
                   name="password"
-                  placeholder="Set your password"
+                  placeholder="Enter your password"
                   className="form-control mb-3 p-4"
                 />
 
@@ -46,5 +59,6 @@ export default function SignUp() {
         </div>
       </div>
     </section>
-  );
+
+  )
 }

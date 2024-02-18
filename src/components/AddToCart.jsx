@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState,  } from "react";
 import { globalContext } from "../context/GlobalContext";
 import { FaPlusSquare } from "react-icons/fa";
 import { FaMinusSquare } from "react-icons/fa";
@@ -6,38 +6,23 @@ import { MdDelete } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
 export default function AddToCart() {
-  const [likeItem, setLikeItem, addCart, setAddCart] = useContext(globalContext);
+  const [ handleAdd, handleLike, filteredData, setFilteredData, user, setUser, search, setSearch, handleSignup,show,setShow,products, setProducts] = useContext(globalContext)
     const [total, setTotal] = useState(0);
 
-    const handlePrice = () => {
-      const totalPrice = addCart.reduce((acc, item) => acc + item.price * item.amount, 0);
-      setTotal(totalPrice);
-    };
 
-    const handleChange = (cart, d) => {
-      const updatedCart = addCart.map((item) => {
-        if (item.id === cart.id) {
-          const updatedAmount = item.amount + d;
-          return { ...item, amount: updatedAmount > 0 ? updatedAmount : 1 };
-        }
-        return item;
-      });
-      setAddCart(updatedCart);
-    };
-  
-    useEffect(() => {
-      handlePrice();
-    }, [addCart]);
-    
+    const Increment  = (item) => {
+      setTotal((item.amount += 1));
+    }
+
+    const Decrement = (item) => {
+      if(item.amount && item.amount > 1){
+        setTotal(item.amount -= 1)
+      }
+    }   
 
     const handleDelete = (id) => {
-      setAddCart(prevAddCart => prevAddCart.filter((value) => value.id !== id))
-   }
-  
-
-
-
-
+      setShow(prevShow => ({...prevShow, cartItems: prevShow.cartItems.filter((data) => data.id != id)}))
+    };
   
   return (
     <section className="h-100 h-custom" style={{backgroundColor: "#eee" }}>
@@ -59,12 +44,12 @@ export default function AddToCart() {
                     <div className="d-flex justify-content-between align-items-center mb-4">
                       <div>
                         <p className="mb-1">Shopping cart</p>
-                        <p className="mb-0">You have {addCart.length} items in your cart</p>
+                        <p className="mb-0">You have {show.cartItems.length} items in your cart</p>
                       </div>
                     </div>
 
-                    {addCart &&
-                      addCart.map((cart) => {
+                    {show &&
+                      show.cartItems.map((cart) => {
                         return (
                           <div className="card mb-3" key={cart.id}>
                             <div className="card-body">
@@ -90,7 +75,7 @@ export default function AddToCart() {
                                         type="button"
                                         className="quantity-left-minus btn btn-light btn-number"
                                         data-type="minus"
-                                        onClick={()=>handleChange(cart, +1)}
+                                        onClick={() => Increment(cart)}
                                       >
                                         <FaPlusSquare />
                                       </button>
@@ -102,7 +87,7 @@ export default function AddToCart() {
                                         className="quantity-right-plus btn btn-light btn-number"
                                         data-type="plus"
                                         data-field=""
-                                        onClick={()=>handleChange(cart, -1)}
+                                        onClick={()=> Decrement(cart)}
                                       >
                                         <FaMinusSquare />
                                       </button>
@@ -227,7 +212,10 @@ export default function AddToCart() {
                           className="btn bg-black btn-block btn-lg text-white"
                         >
                           <div className="d-flex justify-content-between">
-                            <span>${total}.00</span>
+                            <span>${show.cartItems.reduce(
+                              (acc, item) => (acc += item.price * item.amount),
+                              0
+                            )}.00</span>
                             <span className="mx-3">
                                 Checkout{" "}
                               <i className="fas fa-long-arrow-alt-right ms-2"></i>

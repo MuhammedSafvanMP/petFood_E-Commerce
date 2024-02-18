@@ -1,51 +1,98 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { foodData } from '../data/data';
+import { useNavigate } from 'react-router-dom';
 
 export const globalContext = createContext();
 
+
 export const GlobalProvider = ({ children }) => {
-  const [likeItem, setLikeItem] = useState([]);
-  const [addCart, setAddCart] = useState([]);
+  const Navigate = useNavigate();
+
+ 
   const [search, setSearch] = useState("");
   const [filteredData, setFilteredData] = useState(foodData);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
-  const [loginData, setLoginData] = useState({
-    email: '',
-    password: '',
-  });
-
+  const [products, setProducts] = useState(foodData)
+  const [show, setShow] = useState(null)
   const [user, setUser] = useState([]);
 
 
 
-
-  const handleAdd = (id) => {
-    const cart = foodData.find((data) => data.id == id);
-    if (!addCart.some((item) => item.id === cart.id)) {
-      setAddCart([...addCart, cart]);
+  const handleLike = (id) => {
+    const data = products.find((data) => data.id  === id)
+    let alreadyExists = false;
+  
+    for (let item of show.likeItems) {
+      if (item.id === data.id) {
+        alreadyExists = true;
+        break;
+      }
     }
-}
-
-
-const handleLike = (id) => {
-  const result = foodData.find((data) => data.id == id);
-  if (!likeItem.some((item) => item.id === result.id)) {
-    setLikeItem([...likeItem, result]);
+  
+    if (!alreadyExists) {
+      show.likeItems.push({ ...data, amount: 1 });
+    }
+  
   }
-}
+  
+  const handleAdd = (id) => {
+    const data = products.find((item) => item.id === id);
+    let alreadyExists = false;
+  
+    for (let item of show.cartItems) {
+      if (item.id === data.id) {
+        alreadyExists = true;
+        break;
+      }
+    }
+  
+    if (!alreadyExists) {
+      show.cartItems.push({ ...data, amount: 1 });
+    }
+  
+  };
+  
+  
+  
+  
+  
+
+  const handleSignup = (e) => {
+    e.preventDefault();
+
+    if (!/^[a-zA-Z]+([ ]?[a-zA-Z]+)*$/.test(e.target.name.value)) {
+      alert('Please type a correct full name');
+      return;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.target.email.value)) {
+      alert('Your email is wrong');
+      return;
+    } else if (e.target.password.value.length < 8) {
+      alert('Password must be at least 8 characters long');
+      return;
+    }
+
+    let name = e.target.name.value;
+    let email = e.target.email.value;
+    let password = e.target.password.value;
+
+    const userName = { name, email,  password, likeItems: [], cartItems: []}
+
+    setUser([...user, userName ])
+
+    const existingUser = user.email === email;
+
+    if (existingUser) {
+      alert('User already exists');
+      Navigate('/login');
+    }
+
+    Navigate('/login');
+  };
 
 
 
-useEffect(() => {   
-}, [handleLike, handleAdd, formData]);
- 
 
   return (
-    <globalContext.Provider value={[likeItem, setLikeItem, addCart, setAddCart,handleAdd, handleLike, filteredData, setFilteredData, formData, setFormData, loginData, setLoginData, user, setUser,search, setSearch]}>
+    <globalContext.Provider value={[ handleAdd, handleLike, filteredData, setFilteredData, user, setUser, search, setSearch, handleSignup,show,setShow,products, setProducts]}>
       {children}
     </globalContext.Provider>
   );

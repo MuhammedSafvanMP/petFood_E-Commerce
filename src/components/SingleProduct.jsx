@@ -9,7 +9,7 @@ import { globalContext } from '../context/GlobalContext';
 
 export default function SingleProduct() {
 
-  const [ likeItem, setLikeItem,addCart, setAddCart, handleAdd, handleLike] = useContext(globalContext)
+  const [ handleAdd, handleLike, filteredData, setFilteredData, user, setUser, search, setSearch, handleSignup,show,setShow,products, setProducts] = useContext(globalContext)
 
 
    const { id } = useParams();

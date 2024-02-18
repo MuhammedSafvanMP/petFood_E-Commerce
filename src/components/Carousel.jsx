@@ -5,7 +5,7 @@ export default function Carousal() {
   const carouselData = [
     {
       id: 0,
-      img: "../images/carousel-1.jpeg",
+      img: "../images/caro.webp",
       offer: "Save 10 - 20 % off",
       title: {
         black: "Best destination for",
@@ -14,7 +14,7 @@ export default function Carousal() {
     },
     {
       id: 1,
-      img: "../images/carousel-1.jpeg",
+      img: "../images/caro1.jpg",
       offer: "Save 10 - 20 % off",
       title: {
         black: "Best destination for",
@@ -23,7 +23,7 @@ export default function Carousal() {
     },
     {
       id: 3,
-      img: "../images/carousel-1.jpeg",
+      img: "../images/caro3.webp",
       offer: "Save 10 - 20 % off",
       title: {
         black: "Best destination for",

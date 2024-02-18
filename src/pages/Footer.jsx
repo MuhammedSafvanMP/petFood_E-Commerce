@@ -8,7 +8,7 @@ export default function Footer() {
 
         <div className="col-md-3">
           <div className="footer-menu">
-            <img src="../images/logo.png" alt="logo" />
+            <img src="../images/chocolat/footerlogo.png" width={'100px'} alt="logo" />
             <p className="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand offers.</p>
             <div className="social-links">
               <ul className="d-flex list-unstyled gap-2">
@@ -108,7 +108,7 @@ export default function Footer() {
       <hr className="m-0" />
       <div className="row mt-3">
         <div className="col-md-6 copyright">
-          <p className="secondary-font">© {new Date().getFullYear()} Waggy. All rights reserved.</p>
+          <p className="secondary-font">© {new Date().getFullYear()} FOODU. All rights reserved.</p>
         </div>
       </div>
     </div>

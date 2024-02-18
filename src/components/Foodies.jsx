@@ -1,5 +1,4 @@
 import { useContext} from "react";
-import { foodData } from "../data/data";
 import { FaHeart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -8,33 +7,36 @@ import { globalContext } from '../context/GlobalContext';
 
 export default function Foodies() {
     const Navigate = useNavigate()
-  const [ likeItem, setLikeItem,addCart, setAddCart, handleAdd, handleLike, filteredData, setFilteredData] = useContext(globalContext)
+  const [ handleAdd, handleLike, filteredData, setFilteredData, user, setUser, search, setSearch, handleSignup,show,setShow,products, setProducts] = useContext(globalContext)
+
+
 
 
   // const [filteredData, setFilteredData] = useState(foodData);
 
+  console.log(products, "foodies");
 
   const handleAll = () => {
-    setFilteredData(foodData);
+    setFilteredData(products);
   };
 
   const handleCat = () => {
-    const catData = foodData.filter((food) => food.category === "cat");
+    const catData = products.filter((food) => food.category === "cat");
     setFilteredData(catData);
   };
 
   const handleFish = () => {
-    const fishData = foodData.filter((food) => food.category === "fish");
+    const fishData = products.filter((food) => food.category === "fish");
     setFilteredData(fishData);
   };
 
   const handleDog = () => {
-    const dogData = foodData.filter((food) => food.category === "dog");
+    const dogData = products.filter((food) => food.category === "dog");
     setFilteredData(dogData);
   };
 
   const handleBird = () => {
-    const birdData = foodData.filter((food) => food.category === "bird");
+    const birdData = products.filter((food) => food.category === "bird");
     setFilteredData(birdData);
   };
 
@@ -99,7 +101,7 @@ export default function Foodies() {
 
         <div className="isotope-container row">
           {filteredData &&
-            filteredData.filter((food, index) => index < 8 ).map((food) => {
+            filteredData.map((food) => {
               return (
                 <div className="item cat col-md-4 col-lg-3 my-4" key={food.id}>
                   <div className="card position-relative">

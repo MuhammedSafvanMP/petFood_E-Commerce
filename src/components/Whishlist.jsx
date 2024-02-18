@@ -4,12 +4,11 @@ import { globalContext } from '../context/GlobalContext';
 import { MdDelete } from "react-icons/md";
 
 export default function Wishlist() {
-  const [ likeItem, setLikeItem,addCart, setAddCart, handleAdd, handleLike] = useContext(globalContext)
-
-  const handleDelete = (id) => {
-     setLikeItem(prevLikeItem => prevLikeItem.filter((value) => value.id !== id))
-  }
+  const [ handleAdd, handleLike, filteredData, setFilteredData, user, setUser, search, setSearch, handleSignup,show,setShow,products, setProducts] = useContext(globalContext)
  
+  const handleDelete = (id) => {
+    setShow(prevShow => ({...prevShow, likeItems: prevShow.likeItems.filter((data) => data.id != id)}))
+  };
 
   return (    
     <section id="Wishlist" className="py-5 my-5">
@@ -32,8 +31,8 @@ export default function Wishlist() {
           <tbody>
             {
             
-            likeItem &&
-            likeItem.map((data) => {
+            show &&
+            show.likeItems.map((data) => {
                 return(
                   <tr key={data.id}>
                   <td className="py-4">
@@ -80,7 +79,7 @@ export default function Wishlist() {
                         </button>
                       </div>
                       <div className="cart-remove">
-                      <MdDelete style={{fontSize: "3rem"}} onClick={() => handleDelete(data.id)} />
+                      <MdDelete style={{fontSize: "3rem", cursor: "pointer"}} onClick={() => handleDelete(data.id)} />
                       </div>
                     </div>
                   </td>

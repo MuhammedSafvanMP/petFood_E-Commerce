@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
 import { globalContext } from '../context/GlobalContext'
-import { foodData } from '../data/data'
+import { FaHeart } from "react-icons/fa";
+
 
 export default function Cards() {
 
-  const [likeItem, setLikeItem, addCart, setAddCart,handleAdd, handleLike, filteredData, setFilteredData, formData, setFormData, loginData, setLoginData, user, setUser,search, setSearch] = useContext(globalContext)
+  const [ handleAdd, handleLike, filteredData, setFilteredData, user, setUser, search, setSearch, handleSignup,show,setShow,products, setProducts] = useContext(globalContext)
 
   return (
     <section style={{ backgroundColor: "#eee" }}>
@@ -13,7 +14,7 @@ export default function Cards() {
   
       <div className="row">
         {
-         foodData.filter((val) => {
+         products.filter((val) => {
           if (search === "") return val;
         
           const lowerCaseSearch = search.toLowerCase();
@@ -55,6 +56,18 @@ export default function Cards() {
                   </a>
                   <h6 className="mb-3">${val.price}.00</h6>
                 </div>
+                <div className="d-flex flex-wrap mt-3">
+                          <a onClick={() => handleAdd(val.id)} className="btn-cart me-3 px-4 pt-3 pb-3" style={{cursor: "pointer"}}>
+                            <h5 className="text-uppercase m-0" >Add to Cart</h5>
+                          </a>
+                          <a  onClick={() => handleLike(val.id)}  className="btn-wishlist px-4 pt-3 ">
+                            <FaHeart
+                              icon="fluent:heart-28-filled"
+                              className="fs-5"
+                             
+                            />
+                          </a>
+              </div>
               </div>
             </div>
             )

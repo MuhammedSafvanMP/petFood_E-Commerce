@@ -22,3 +22,68 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+
+import React, { createContext, useState, useEffect } from 'react';
+import { foodData } from '../data/data';
+import { useNavigate } from 'react-router-dom';
+
+export const globalContext = createContext();
+
+export const GlobalProvider = ({ children }) => {
+  const Navigate = useNavigate();
+
+  // State variables for `likeItem` and `addCart`
+  const [likeItem, setLikeItem] = useState([]);
+  const [addCart, setAddCart] = useState([]);
+
+  // ...other state variables...
+
+  // Read initial values from localStorage (if they exist)
+  useEffect(() => {
+    const storedLikeItem = JSON.parse(localStorage.getItem('likeItem'));
+    const storedAddCart = JSON.parse(localStorage.getItem('addCart'));
+
+    setLikeItem(storedLikeItem || []);
+    setAddCart(storedAddCart || []);
+  }, []); // Empty dependency array to run only once after initial render
+
+  // ...other functions...
+
+  const handleSignup = (e) => {
+    e.preventDefault();
+
+    // ...validation...
+
+    const newUser = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
+      likeItem, // Pass current `likeItem` instead of creating a new copy
+      cartItem: addCart, // Pass current `addCart` instead of creating a new copy
+    };
+
+    // Get existing users from localStorage or initialize as an empty array
+    const existingUsers = JSON.parse(localStorage.getItem('user')) || [];
+
+    // ...handle existing user case...
+
+    existingUsers.push(newUser);
+    localStorage.setItem('user', JSON.stringify(existingUsers));
+
+    // Update localStorage for `likeItem` and `addCart` AFTER signup
+    localStorage.setItem('likeItem', JSON.stringify(likeItem));
+    localStorage.setItem('addCart', JSON.stringify(addCart));
+
+    // ...redirect to home page...
+  };
+
+  // ...other functions...
+
+  return (
+    <globalContext.Provider value={[likeItem, setLikeItem, addCart, setAddCart, ...]}>
+      {children}
+    </globalContext.Provider>
+  );
+};
