@@ -84,7 +84,7 @@ export default function BestRatingProdects() {
                       <div className="card position-relative">
                         <a>
                           <img
-                            onClick={() => Navigate(`${food.id}`)}
+                            onClick={() => Navigate(`/product/${food.id}`)}
                             src={food.image}
                             className="img-fluid rounded-4"
                             alt="image"
