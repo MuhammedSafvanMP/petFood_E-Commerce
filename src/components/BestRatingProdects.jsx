@@ -88,6 +88,7 @@ export default function BestRatingProdects() {
                             src={food.image}
                             className="img-fluid rounded-4"
                             alt="image"
+                            style={{cursor: "pointer"}}
                           />
                         </a>
                         <div className="card-body p-0">

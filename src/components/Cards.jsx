@@ -4,6 +4,7 @@ import { FaHeart } from "react-icons/fa";
 import Services from "../pages/Services";
 import Footer from "../pages/Footer";
 import Header from "../pages/Header";
+import { useNavigate } from "react-router-dom";
 
 export default function Cards() {
   const [
@@ -22,6 +23,8 @@ export default function Cards() {
     setProducts,
   ] = useContext(globalContext);
 
+
+  const Navigate = useNavigate()
   return (
     <>
       <Header />
@@ -62,7 +65,7 @@ export default function Cards() {
                         className="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                         data-mdb-ripple-color="light"
                       >
-                        <img onClick={() => Navigate(`/product/${val.id}`)} src={val.image} className="w-100" />
+                        <img style={{cursor: "pointer"}} src={val.image} onClick={() => Navigate(`/product/${val.id}`)} className="w-100" />
                         <a>
                           <div className="mask">
                             <div className="d-flex justify-content-start align-items-end h-100">
