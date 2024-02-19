@@ -121,7 +121,7 @@ export default function Foodies() {
                     <div className="card position-relative">
                       <li>
                         <img
-                          onClick={() => Navigate(`${food.id}`)}
+                          onClick={() => Navigate(`/product/${food.id}`)}
                           src={food.image}
                           className="img-fluid rounded-4"
                           style={{ cursor: "pointer" }}
