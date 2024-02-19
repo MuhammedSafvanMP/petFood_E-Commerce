@@ -143,11 +143,11 @@ export default function Header() {
                 <a  class="nav-link">Product</a>
               </NavLink>
               </li>
-              <li class="nav-item">
+              {/* <li class="nav-item">
               <NavLink to='/services'>
                 <a  class="nav-link">Service</a>
               </NavLink>
-              </li>
+              </li> */}
             </ul>
 
               <div className="d-none d-lg-flex align-items-end">

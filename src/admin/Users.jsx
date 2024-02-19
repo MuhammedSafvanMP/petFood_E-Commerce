@@ -24,7 +24,7 @@ export default function Users() {
       <div className="row">
         <nav
           id="sidebarMenu"
-          className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+          className="col-md-3 col-lg-2 d-md-block bg-light sidebar"
         >
           <div className="position-sticky pt-3">
             <ul className="nav flex-column">
@@ -35,19 +35,21 @@ export default function Users() {
                 </a>
               </li>
               <li className="nav-item">
-                <NavLink to="/users">
-                  <a className="nav-link">
-                    <span data-feather="file"></span>
-                    Users
-                  </a>
+                <NavLink to="/" className="nav-link">
+                  <span data-feather="file"></span>
+                  Home
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/products">
-                  <a className="nav-link">
-                    <span data-feather="shopping-cart"></span>
-                    Products
-                  </a>
+                <NavLink to="/users" className="nav-link">
+                  <span data-feather="file"></span>
+                  Users
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/products" className="nav-link">
+                  <span data-feather="shopping-cart"></span>
+                  Products
                 </NavLink>
               </li>
             </ul>

@@ -1,9 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Header from './pages/Header'
 import Home from './pages/Home'
-import Services from './pages/Services'
-import Footer from './pages/Footer'
 import Whishlist from './components/Whishlist'
 import SingleProduct from './components/SingleProduct'
 import AddToCart from './components/AddToCart'
@@ -22,7 +19,6 @@ export default function App() {
   return (
    <>
 
-      <Header  />
       <Routes> 
           <Route path="/" element={<Home />} />
            <Route path='/whishlist' element={ <Whishlist />  } />
@@ -31,7 +27,6 @@ export default function App() {
           <Route path='/login' element={ <Login />  } />
           <Route path='/signup' element={ <Signup />  } />
           <Route path='/product' element={ <Foodies />  } />
-          <Route path='/services' element={ <Services />  } />
           <Route path='/cards' element={ <Cards />  } />
           <Route path='/dashbord' element={ <Dashbord />  } />
           <Route path='/users' element={ <Users />  } />
@@ -40,8 +35,6 @@ export default function App() {
 
           <Route path='*' element={ <Error /> } />
       </Routes>
-      <Services />
-      <Footer />
    </>
   )
 }
