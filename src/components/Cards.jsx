@@ -62,7 +62,7 @@ export default function Cards() {
                         className="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
                         data-mdb-ripple-color="light"
                       >
-                        <img src={val.image} className="w-100" />
+                        <img onClick={() => Navigate(`/product/${val.id}`)} src={val.image} className="w-100" />
                         <a>
                           <div className="mask">
                             <div className="d-flex justify-content-start align-items-end h-100">
