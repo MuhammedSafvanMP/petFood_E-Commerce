@@ -22,7 +22,7 @@ export default function App() {
       <Routes> 
           <Route path="/" element={<Home />} />
            <Route path='/whishlist' element={ <Whishlist />  } />
-          <Route path='/:id' element={ <SingleProduct />  } />
+          <Route path='/product/:id' element={ <SingleProduct />  } />
           <Route path='/addcart' element={ <AddToCart />  } />
           <Route path='/login' element={ <Login />  } />
           <Route path='/signup' element={ <Signup />  } />
