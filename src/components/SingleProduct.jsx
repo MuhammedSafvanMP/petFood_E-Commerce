@@ -5,9 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { globalContext } from "../context/GlobalContext";
-import Header from "../pages/Header";
-import Footer from "../pages/Footer";
-import Services from "../pages/Services";
+
 
  function SingleProduct() {
   const [
@@ -31,7 +29,6 @@ import Services from "../pages/Services";
   const Navigate = useNavigate();
   return (
     <>
-      <Header />
       <section id="selling-product">
         <div className="container my-md-5 py-5">
           <div className="row g-md-5">
@@ -116,8 +113,6 @@ import Services from "../pages/Services";
         </div>
       </section>
 
-      <Services />
-      <Footer />
     </>
   );
 }

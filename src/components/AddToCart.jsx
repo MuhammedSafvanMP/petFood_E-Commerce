@@ -4,9 +4,7 @@ import { FaPlusSquare } from "react-icons/fa";
 import { FaMinusSquare } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { NavLink } from "react-router-dom";
-import Header from "../pages/Header";
-import Services from "../pages/Services";
-import Footer from "../pages/Footer";
+
 
 export default function AddToCart() {
   const [
@@ -45,7 +43,7 @@ export default function AddToCart() {
 
   return (
     <>
-      <Header />
+   
 
       <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
         <div className="container py-5 h-100">
@@ -269,8 +267,6 @@ export default function AddToCart() {
         </div>
       </section>
 
-      <Services />
-      <Footer />
     </>
   );
 }

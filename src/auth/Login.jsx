@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import { globalContext } from "../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
-import Services from "../pages/Services";
-import Footer from "../pages/Footer";
-import Header from "../pages/Header";
+
 
 export default function Login() {
   const [
@@ -42,8 +40,7 @@ export default function Login() {
   };
 
   return (
-    <>
-      <Header />
+    <>     
       <section className="login-tabs padding-large">
         <div className="container my-5 py-5">
           <div className="row">
@@ -85,8 +82,6 @@ export default function Login() {
         </div>
       </section>
 
-      <Services />
-      <Footer />
     </>
   );
 }

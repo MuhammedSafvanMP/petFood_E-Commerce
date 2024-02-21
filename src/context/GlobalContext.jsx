@@ -14,6 +14,7 @@ export const GlobalProvider = ({ children }) => {
   const [products, setProducts] = useState(foodData)
   const [show, setShow] = useState(null)
   const [user, setUser] = useState([]);
+  const [dashbord, setDashBord] = useState(true);
 
 
 
@@ -92,7 +93,7 @@ export const GlobalProvider = ({ children }) => {
 
 
   return (
-    <globalContext.Provider value={[ handleAdd, handleLike, filteredData, setFilteredData, user, setUser, search, setSearch, handleSignup,show,setShow,products, setProducts]}>
+    <globalContext.Provider value={[ handleAdd, handleLike, filteredData, setFilteredData, user, setUser, search, setSearch, handleSignup,show,setShow,products, setProducts,dashbord, setDashBord]}>
       {children}
     </globalContext.Provider>
   );

@@ -84,7 +84,7 @@ export default function Header() {
               <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle mx-3"  id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <span className="fs-4"> <FaUser /> </span>
-                  <h5 className="mb-0 fs-6"> {show && show.name}   </h5>
+                  <h5 className="mb-0 " style={{fontSize: "8px"}}> {show && show.name}   </h5>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><Link class="dropdown-item"to='/signup' >Sign Up</Link></li>
@@ -142,12 +142,7 @@ export default function Header() {
               <NavLink to='/product'>
                 <a  class="nav-link">Product</a>
               </NavLink>
-              </li>
-              {/* <li class="nav-item">
-              <NavLink to='/services'>
-                <a  class="nav-link">Service</a>
-              </NavLink>
-              </li> */}
+              </li>          
             </ul>
 
               <div className="d-none d-lg-flex align-items-end">
@@ -157,7 +152,7 @@ export default function Header() {
                     <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle mx-3"  id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <span className="fs-4"> <FaUser /> </span>
-                  <h5 className="mb-0 fs-6"> {show && show.name}   </h5>
+                  <h5 className="mb-0 " style={{fontSize: "10px"}}> {show && show.name}   </h5>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><Link class="dropdown-item"to='/signup' >Sign Up</Link></li>

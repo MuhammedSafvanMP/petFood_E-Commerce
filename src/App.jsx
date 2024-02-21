@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Whishlist from './components/Whishlist'
@@ -13,12 +13,21 @@ import Dashbord from './admin/Dashbord'
 import Users from './admin/Users'
 import Products from './admin/Products'
 import Update from './admin/Update'
+import Header from './pages/Header'
+import Services from './pages/Services'
+import Footer from './pages/Footer'
+import { globalContext } from './context/GlobalContext'
 
 export default function App() {
-
+  const [ handleAdd, handleLike, filteredData, setFilteredData, user, setUser, search, setSearch, handleSignup,show,setShow,products, setProducts,dashbord, setDashBord] = useContext(globalContext);
   return (
    <>
-
+    {
+      dashbord && 
+      dashbord ?
+      (
+        <>
+        <Header />
       <Routes> 
           <Route path="/" element={<Home />} />
            <Route path='/whishlist' element={ <Whishlist />  } />
@@ -29,12 +38,25 @@ export default function App() {
           <Route path='/product' element={ <Foodies />  } />
           <Route path='/cards' element={ <Cards />  } />
           <Route path='/dashbord' element={ <Dashbord />  } />
-          <Route path='/users' element={ <Users />  } />
-          <Route path='/products' element={ <Products />  } />
-          <Route path='/products/:id' element={ <Update  />  } />
 
           <Route path='*' element={ <Error /> } />
       </Routes>
+      <Services />
+      <Footer />
+      </>
+      )
+      :
+      (
+        <Routes>
+        <Route path='/users' element={ <Users />  } />
+        <Route path='/products' element={ <Products />  } />
+        <Route path='/products/:id' element={ <Update  />  } />
+      </Routes>
+      )
+
+    }
+    
+     
    </>
   )
 }

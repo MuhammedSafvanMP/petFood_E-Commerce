@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import { globalContext } from "../context/GlobalContext";
-import Services from "../pages/Services";
-import Footer from "../pages/Footer";
-import Header from "../pages/Header";
+
 
 export default function SignUp() {
   const [
@@ -23,7 +21,6 @@ export default function SignUp() {
 
   return (
     <>
-      <Header />
       <section className="login-tabs padding-large">
         <div className="container my-5 py-5">
           <div className="row">
@@ -70,8 +67,6 @@ export default function SignUp() {
         </div>
       </section>
 
-      <Services />
-      <Footer />
     </>
   );
 }

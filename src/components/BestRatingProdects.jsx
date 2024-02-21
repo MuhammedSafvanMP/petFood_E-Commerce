@@ -125,7 +125,7 @@ import { globalContext } from "../context/GlobalContext";
                                 </h5>
                               </a>
                               <a
-                                onClick={() => (show && show.name ?  handleLike(food.id) : Navigate('/Navigation'))}
+                                onClick={() => (show && show.name ?  handleLike(food.id) : Navigate('/signup'))}
                                 className="btn-wishlist px-4 pt-3 "
                               >
                                 <FaHeart

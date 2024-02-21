@@ -1,11 +1,12 @@
-import React from "react";
+import React,{useContext} from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../pages/Header";
-import Services from "../pages/Services";
-import Footer from "../pages/Footer";
+import { globalContext } from "../context/GlobalContext";
+
 
 export default function Dashbord() {
   const Navigate = useNavigate();
+
+  const [ handleAdd, handleLike, filteredData, setFilteredData, user, setUser, search, setSearch, handleSignup,show,setShow,products, setProducts,dashbord, setDashBord] = useContext(globalContext)
 
   const admin = {
     name: "safu",
@@ -20,13 +21,15 @@ export default function Dashbord() {
       e.target.name.value == admin.name &&
       e.target.email.value == admin.email &&
       e.target.password.value == admin.password
-    )
+    ){
+      setDashBord(!dashbord);
       Navigate("/users");
+    }
     else alert("this admin not");
   };
   return (
     <>
-      <Header />
+     
       <section className="login-tabs padding-large">
         <div className="container my-5 py-5">
           <div className="row">
@@ -73,8 +76,7 @@ export default function Dashbord() {
         </div>
       </section>
 
-      <Services />
-      <Footer />
+     
     </>
   );
 }

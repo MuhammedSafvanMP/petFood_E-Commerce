@@ -2,9 +2,7 @@ import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { globalContext } from "../context/GlobalContext";
 import { MdDelete } from "react-icons/md";
-import Header from "../pages/Header";
-import Services from "../pages/Services";
-import Footer from "../pages/Footer";
+
 
 export default function Wishlist() {
   const [
@@ -32,7 +30,6 @@ export default function Wishlist() {
 
   return (
     <>
-      <Header />
 
       <section id="Wishlist" className="py-5 my-5">
         <div className="container">
@@ -40,13 +37,7 @@ export default function Wishlist() {
             <thead>
               <tr>
                 <th scope="col" className="card-title text-uppercase">
-                  Product
-                </th>
-                <th scope="col" className="card-title text-uppercase">
-                  Unit Price
-                </th>
-                <th scope="col" className="card-title text-uppercase">
-                  Stock Status
+                  Products
                 </th>
                 <th scope="col" className="card-title text-uppercase"></th>
               </tr>
@@ -118,8 +109,6 @@ export default function Wishlist() {
         </div>
       </section>
 
-      <Services />
-      <Footer />
     </>
   );
 }
