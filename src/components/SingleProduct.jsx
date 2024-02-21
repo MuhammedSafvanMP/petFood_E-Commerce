@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React, { memo, useContext } from "react";
 import "swiper/swiper-bundle.css";
 import { foodData } from "../data/data";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { globalContext } from "../context/GlobalContext";
@@ -9,7 +9,7 @@ import Header from "../pages/Header";
 import Footer from "../pages/Footer";
 import Services from "../pages/Services";
 
-export default function SingleProduct() {
+ function SingleProduct() {
   const [
     handleAdd,
     handleLike,
@@ -28,6 +28,7 @@ export default function SingleProduct() {
 
   const { id } = useParams();
   const product = foodData.find((data) => data.id == id);
+  const Navigate = useNavigate();
   return (
     <>
       <Header />
@@ -55,7 +56,7 @@ export default function SingleProduct() {
             <div className="col-lg-6 mt-5 ">
               <div className="product-info">
                 <div className="element-header">
-                  <h2 itemprop="name" className="display-6">
+                  <h2 className="display-6">
                     {" "}
                     {product.title}{" "}
                   </h2>
@@ -89,14 +90,14 @@ export default function SingleProduct() {
                     <div className="stock-button-wrap">
                       <div className="d-flex flex-wrap pt-4">
                         <a
-                          onClick={() => handleAdd(product.id)}
+                          onClick={() => (show && show.name ? handleAdd(product.id) : Navigate('/signup'))}
                           className="btn-cart me-3 px-4 pt-3 pb-3"
                           style={{ cursor: "pointer" }}
                         >
                           <h5 className="text-uppercase m-0">Add to Cart</h5>
                         </a>
                         <a
-                          onClick={() => handleLike(product.id)}
+                          onClick={() => (show && show.name ? handleLike(product.id) : Navigate('/signup'))}
                           className="btn-wishlist px-4 pt-3 "
                           style={{ cursor: "pointer" }}
                         >
@@ -120,3 +121,5 @@ export default function SingleProduct() {
     </>
   );
 }
+
+export default memo(SingleProduct)

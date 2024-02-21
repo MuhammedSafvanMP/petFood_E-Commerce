@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, memo } from "react";
 import Swiper from "swiper";
 import "swiper/swiper-bundle.css";
 import { FaHeart } from "react-icons/fa";
@@ -6,7 +6,7 @@ import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { globalContext } from "../context/GlobalContext";
 
-export default function BestRatingProdects() {
+ function BestRatingProdects() {
   const Navigate = useNavigate();
   const [
     handleAdd,
@@ -66,9 +66,6 @@ export default function BestRatingProdects() {
           <div>
             <a className="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
               shop now
-              <svg width="24" height="24" viewBox="0 0 24 24" className="mb-1">
-                <use xlink:href="#arrow-right"></use>
-              </svg>
             </a>
           </div>
         </div>
@@ -119,7 +116,7 @@ export default function BestRatingProdects() {
 
                             <div className="d-flex flex-wrap mt-3">
                               <a
-                                onClick={() => handleAdd(food.id)}
+                                onClick={() => (show && show.name ?  handleAdd(food.id) : Navigate('/signup'))}
                                 className="btn-cart me-3 px-4 pt-3 pb-3"
                                 style={{ cursor: "pointer" }}
                               >
@@ -128,7 +125,7 @@ export default function BestRatingProdects() {
                                 </h5>
                               </a>
                               <a
-                                onClick={() => handleLike(food.id)}
+                                onClick={() => (show && show.name ?  handleLike(food.id) : Navigate('/Navigation'))}
                                 className="btn-wishlist px-4 pt-3 "
                               >
                                 <FaHeart
@@ -149,3 +146,6 @@ export default function BestRatingProdects() {
     </section>
   );
 }
+
+
+export default memo(BestRatingProdects)

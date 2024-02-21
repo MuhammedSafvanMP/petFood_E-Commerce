@@ -1,10 +1,9 @@
-import { useContext } from "react";
-import { FaHeart } from "react-icons/fa";
-import { FaStar } from "react-icons/fa";
+import { useContext, memo } from "react";
+import { FaHeart, FaStar } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
 import { globalContext } from "../context/GlobalContext";
 
-export default function Foodies() {
+function Foodies() {
   const Navigate = useNavigate();
   const [
     handleAdd,
@@ -21,7 +20,6 @@ export default function Foodies() {
     products,
     setProducts,
   ] = useContext(globalContext);
-
 
   const handleAll = () => {
     setFilteredData(products);
@@ -110,76 +108,64 @@ export default function Foodies() {
             </div>
           </div>
 
-          <div className="isotope-container row">
+          <div className="isotope-container row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
             {filteredData &&
-              filteredData.map((food) => {
-                return (
-                  <div
-                    className="item cat col-md-4 col-lg-3 my-4"
-                    key={food.id}
-                  >
-                    <div className="card position-relative">
-                      <li>
-                        <img
-                          onClick={() => Navigate(`/product/${food.id}`)}
-                          src={food.image}
-                          className="img-fluid rounded-4"
-                          style={{ cursor: "pointer" }}
-                          alt="image"
-                        />
-                      </li>
-                      <div className="card-body p-0">
-                        <a>
-                          <h3 className="card-title pt-4 m-0">
-                            {" "}
-                            {food.title}{" "}
-                          </h3>
-                        </a>
-
-                        <div className="card-text">
-                          <span className="rating secondary-font">
-                            {Array.from({ length: food.rating }, (_, index) => (
-                              <FaStar
-                                key={index}
-                                icon="clarity:star-solid"
-                                className="text-primary"
-                              />
-                            ))}
-                          </span>
-
-                          <h3 className="secondary-font text-primary">
-                            ${food.price}.00
-                          </h3>
-
-                          <div className="d-flex flex-wrap mt-3">
-                            <a
-                              onClick={() => handleAdd(food.id)}
-                              className="btn-cart me-3 px-4 pt-3 pb-3"
-                              style={{ cursor: "pointer" }}
-                            >
-                              <h5 className="text-uppercase m-0">
-                                Add to Cart
-                              </h5>
-                            </a>
-                            <a
-                              onClick={() => handleLike(food.id)}
-                              className="btn-wishlist px-4 pt-3 "
-                            >
-                              <FaHeart
-                                icon="fluent:heart-28-filled"
-                                className="fs-5"
-                              />
-                            </a>
-                          </div>
+              filteredData.map((food) => (
+                <div key={food.id}>
+                  <div className="card position-relative">
+                    <img
+                      onClick={() => Navigate(`/product/${food.id}`)}
+                      src={food.image}
+                      className="img-fluid rounded-4"
+                      style={{ cursor: "pointer" }}
+                      alt="image"
+                    />
+                    <div className="card-body p-3">
+                      <a>
+                        <h3 className="card-title pt-2 m-0">
+                          {food.title}
+                        </h3>
+                      </a>
+                      <div className="card-text">
+                        <span className="rating secondary-font">
+                          {Array.from({ length: food.rating }, (_, index) => (
+                            <FaStar
+                              key={index}
+                              icon="clarity:star-solid"
+                              className="text-primary"
+                            />
+                          ))}
+                        </span>
+                        <h3 className="secondary-font text-primary">
+                          ${food.price}.00
+                        </h3>
+                        <div className="d-flex flex-wrap mt-2">
+                          <a   onClick={() => (show && show.name ? handleAdd(food.id) : Navigate('/signup'))}
+                            className="btn-cart me-2 px-3 py-2"
+                            style={{ cursor: "pointer" }}
+                          >
+                            <h5 className="text-uppercase m-0">Add to Cart</h5>
+                          </a>
+                          <a   onClick={() => (show && show.name ? handleLike(food.id) : Navigate('/signup'))}
+                            className="btn-wishlist px-3 py-2"
+                            style={{ cursor: "pointer" }}
+                          >
+                            <FaHeart
+                              icon="fluent:heart-28-filled"
+                              className="fs-5"
+                            />
+                          </a>
                         </div>
                       </div>
                     </div>
                   </div>
-                );
-              })}
+                </div>
+              ))}
           </div>
         </div>
       </section>
     </>
   );
 }
+
+export default memo(Foodies);

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { memo, useContext } from "react";
 import { globalContext } from "../context/GlobalContext";
 import { FaHeart } from "react-icons/fa";
 import Services from "../pages/Services";
@@ -6,7 +6,7 @@ import Footer from "../pages/Footer";
 import Header from "../pages/Header";
 import { useNavigate } from "react-router-dom";
 
-export default function Cards() {
+ function Cards() {
   const [
     handleAdd,
     handleLike,
@@ -97,14 +97,14 @@ export default function Cards() {
                       </div>
                       <div className="d-flex flex-wrap mt-3">
                         <a
-                          onClick={() => handleAdd(val.id)}
+                          onClick={() => (show && show.name ? handleAdd(val.id) : Navigate('/signup'))}
                           className="btn-cart me-3 px-4 pt-3 pb-3"
                           style={{ cursor: "pointer" }}
                         >
                           <h5 className="text-uppercase m-0">Add to Cart</h5>
                         </a>
                         <a
-                          onClick={() => handleLike(val.id)}
+                          onClick={() => (show && show.name ? handleLike(val.id) : Navigate('/signup'))}
                           className="btn-wishlist px-4 pt-3 "
                         >
                           <FaHeart
@@ -126,3 +126,5 @@ export default function Cards() {
     </>
   );
 }
+
+export default memo(Cards)
