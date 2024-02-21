@@ -211,6 +211,7 @@ export default function Products() {
                               <div
                                 className="cart-remove"
                                 onClick={() => handleDelete(product.id)}
+                                style={{cursor: "pointer"}}
                               >
                                 <MdDelete style={{ fontSize: "3rem" }} />
                               </div>
